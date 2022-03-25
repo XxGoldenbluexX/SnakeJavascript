@@ -1,10 +1,20 @@
 export class GM_Menu{
 
+    constructor(game){
+        this.game = game;
+    }
+
     /**
-     * Fonction permettant de rendre un mode de jeu dans un contener
-     * @param root Conteneur ou le mode de jeu va être rendu
+     * Methode mettant en place le mode de jeu.
      */
-    load(root){
+    load(){
+        
+    }
+
+    /**
+     * Methode détruisant le mode de jeu.
+     */
+    unload(){
 
     }
 
