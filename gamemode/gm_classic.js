@@ -1,3 +1,4 @@
+import { FoodGrowth } from "../entity/food.js";
 import { InputHandler } from "../utility/inputhandler.js";
 import { MapLoader } from "../utility/maploader.js";
 import { WorldGrid } from "../utility/worldgrid.js";
@@ -25,6 +26,9 @@ export class GM_Classic{
         if (this.context==null) return;
         this.game.root.appendChild(this.canvas);
         this.inputHandler = new InputHandler();
+        let food = new FoodGrowth();
+        food.cases.push(this.worldGrid.randomPlaceFree());
+        this.worldGrid.entities.push(food)
         this.clockID = setInterval(this.gameLoop.bind(this),this.worldGrid.stepDelay)
     }
 

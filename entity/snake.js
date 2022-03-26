@@ -7,6 +7,10 @@ export class Snake{
         this.alive = true;
     }
 
+    onSnakeInteract(grid,snake){
+        snake.alive = false;
+    }
+
     step(grid,inputh){
         let xspd = 0;
         let yspd = 0;
@@ -17,8 +21,9 @@ export class Snake{
         }
         xspd = this.cases[this.cases.length-1]//snake's tail (recyclage de variable)
         yspd = [xspd[0]+this.dir[0],xspd[1]+this.dir[1]]//snake's next case (recyclage de variable)
-        this.alive = this.alive && this.cases.every(function(c){return (c[0]!=yspd[0])||(c[1]!=yspd[1]);})//le serpent se marche sur la queue
-        //out of map test
+        for (let e of grid.getEntitiesAt(yspd)){
+            e.onSnakeInteract(grid,this)
+        }
         this.alive = this.alive && (yspd[0]<grid.worldWidth && yspd[0]>=0 && yspd[1]<grid.worldHeight && yspd[1]>=0)
         this.cases.push(yspd);
         while (this.cases.length>this.size){
