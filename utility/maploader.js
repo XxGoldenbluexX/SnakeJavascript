@@ -1,3 +1,4 @@
+import { Snake } from "../entity/snake.js";
 export class MapLoader{
 
     getMapPath(mapName){
@@ -14,6 +15,12 @@ export class MapLoader{
             worldGrid.worldHeight = map.worldHeight;
             worldGrid.viewWidth = worldGrid.caseWidth*worldGrid.worldWidth;
             worldGrid.viewHeight = worldGrid.caseHeight*worldGrid.worldHeight;
+            worldGrid.stepDelay = map.delay;
+            worldGrid.snake = new Snake();
+            worldGrid.entities.push(worldGrid.snake);
+            worldGrid.snake.size = map.snakeStartSize;
+            worldGrid.snake.cases.push(map.snakeStart);
+            worldGrid.snake.dir = map.snakeStartDir;
             callback();
         }else{
             console.log("Unable to fetch the map file: "+fileName);

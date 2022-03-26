@@ -4,16 +4,7 @@
     "worldWidth":50,
     "worldHeight":20,
     "delay": 200,
-    "walls": [
-        [5,5], [5,6], [5,7], [5,8], [70, 35], [71, 35], [72, 35]
-    ],
-    "food": [
-        [10,10]
-    ],
-    "snake": [
-      [60,60],
-      [60,59],
-      [60,58]
-    ]
-
+    "snakeStart":[0,0],
+    "snakeStartSize":3,
+    "snakeStartDir":[1,0]
 }

@@ -18,16 +18,23 @@ export class GM_Classic{
     }
 
     onMapLoaded(){
-        //SETUP CANVAS
         this.canvas = document.createElement("canvas");
         this.canvas.width = this.worldGrid.viewWidth;
         this.canvas.height = this.worldGrid.viewHeight;
         this.context = this.canvas.getContext("2d",{alpha:false});
         if (this.context==null) return;
         this.game.root.appendChild(this.canvas);
-        this.context.clearRect(0,0,0,1);
-        this.worldGrid.renderGrid(this.context);
         this.inputHandler = new InputHandler();
+        this.clockID = setInterval(this.gameLoop.bind(this),this.worldGrid.stepDelay)
+    }
+
+    gameLoop(){
+        this.context.clearRect(0,0,this.worldGrid.viewWidth,this.worldGrid.viewHeight);
+        this.worldGrid.step(this.inputHandler);
+        this.worldGrid.render(this.context);
+        if (!this.worldGrid.snake.alive){
+            clearInterval(this.clockID);
+        }
     }
 
     /**

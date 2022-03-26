@@ -7,6 +7,8 @@ export class WorldGrid{
         this.worldHeight = 0;
         this.viewWidth = 0;
         this.viewHeight = 0;
+        this.stepDelay = 0;
+        this.snake=null;
     }
 
     renderGrid(context){
@@ -20,15 +22,15 @@ export class WorldGrid{
     }
 
     step(inputHandler){
-        for (e of this.entities){
+        for (let e of this.entities){
             e.step(this,inputHandler);
         }
     }
 
     render(context){
         this.renderGrid(context);
-        for (e in this.entities){
-            e.render(context);
+        for (let i in this.entities){
+            this.entities[i].render(this,context);
         }
     }
 }
