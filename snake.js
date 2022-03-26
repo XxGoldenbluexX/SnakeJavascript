@@ -1,10 +1,13 @@
 import {GM_Classic} from "./gamemode/gm_classic.js";
 import {GM_Menu} from "./gamemode/gm_menu.js";
+import {MapLoader} from "./utility/maploader.js";
 
 window.addEventListener("load",function(){
     let root = document.getElementById('root');
     let game = new SnakeGame(root);
     game._startGame();
+    let mapLoader = new MapLoader();
+    mapLoader.load("./maps/default.json",null);
 })
 
 class SnakeGame{

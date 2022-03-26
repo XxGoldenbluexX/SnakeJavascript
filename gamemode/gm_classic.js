@@ -11,10 +11,10 @@ export class GM_Classic{
         this.canvas = document.createElement("canvas");
         this.canvas.width = 400;
         this.canvas.height = 400;
-        this.context = this.canvas.getContext("webgl",{alpha:false});
+        this.context = this.canvas.getContext("2d",{alpha:false});
         if (this.context==null) return;
         this.game.root.appendChild(this.canvas);
-        this.context.clearColor(0,0,0,1);
+        this.context.clearRect(0,0,0,1);
     }
 
     /**
