@@ -18,4 +18,17 @@ export class WorldGrid{
             context.strokeRect(0,j*this.caseHeight,this.viewWidth,this.caseHeight)
         }
     }
+
+    step(inputHandler){
+        for (e of this.entities){
+            e.step(this,inputHandler);
+        }
+    }
+
+    render(context){
+        this.renderGrid(context);
+        for (e in this.entities){
+            e.render(context);
+        }
+    }
 }

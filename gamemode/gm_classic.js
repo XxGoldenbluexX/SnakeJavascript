@@ -1,3 +1,4 @@
+import { InputHandler } from "../utility/inputhandler.js";
 import { MapLoader } from "../utility/maploader.js";
 import { WorldGrid } from "../utility/worldgrid.js";
 
@@ -26,6 +27,7 @@ export class GM_Classic{
         this.game.root.appendChild(this.canvas);
         this.context.clearRect(0,0,0,1);
         this.worldGrid.renderGrid(this.context);
+        this.inputHandler = new InputHandler();
     }
 
     /**
