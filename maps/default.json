@@ -1,5 +1,8 @@
 {
-    "dimensions": [80, 40],
+    "caseWidth":30,
+    "caseHeight":30,
+    "worldWidth":50,
+    "worldHeight":20,
     "delay": 200,
     "walls": [
         [5,5], [5,6], [5,7], [5,8], [70, 35], [71, 35], [72, 35]
