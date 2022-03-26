@@ -5,6 +5,7 @@ export class Snake{
         this.cases = [];
         this.dir = [0,0];
         this.alive = true;
+        this.stepSize = 1;
     }
 
     onSnakeInteract(grid,snake){
@@ -20,7 +21,7 @@ export class Snake{
             this.dir = [xspd,yspd];
         }
         xspd = this.cases[this.cases.length-1]//snake's tail (recyclage de variable)
-        yspd = [xspd[0]+this.dir[0],xspd[1]+this.dir[1]]//snake's next case (recyclage de variable)
+        yspd = [xspd[0]+this.dir[0]*this.stepSize,xspd[1]+this.dir[1]*this.stepSize]//snake's next case (recyclage de variable)
         for (let e of grid.getEntitiesAt(yspd)){
             e.onSnakeInteract(grid,this)
         }

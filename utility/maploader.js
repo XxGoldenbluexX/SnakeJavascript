@@ -1,4 +1,5 @@
 import { Snake } from "../entity/snake.js";
+import { Wall } from "../entity/wall.js";
 export class MapLoader{
 
     getMapPath(mapName){
@@ -21,6 +22,11 @@ export class MapLoader{
             worldGrid.snake.size = map.snakeStartSize;
             worldGrid.snake.cases.push(map.snakeStart);
             worldGrid.snake.dir = map.snakeStartDir;
+            for (let w of map.walls){
+                let wall = new Wall();
+                wall.cases.push(w);
+                worldGrid.entities.push(wall);
+            }
             callback();
         }else{
             console.log("Unable to fetch the map file: "+fileName);
