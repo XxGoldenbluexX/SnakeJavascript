@@ -22,9 +22,7 @@ export class GM_Classic{
     onMapLoaded(loaded){
         if (!loaded){
             alert("La carte n'a pas pu charger")
-            this.unload();
-            this.game.gamemode = new GM_Menu(this.game);
-            this.game.gamemode.load();
+            this.backToMenu();
             return;
         }
         this.canvas = document.createElement("canvas");
@@ -34,9 +32,6 @@ export class GM_Classic{
         if (this.context==null) return;
         this.game.root.appendChild(this.canvas);
         this.inputHandler = new InputHandler();
-        let food = new FoodGrowth();
-        food.cases.push(this.worldGrid.randomPlaceFree());
-        this.worldGrid.entities.push(food)
         this.clockID = setInterval(this.gameLoop.bind(this),this.worldGrid.stepDelay)
     }
 
@@ -45,7 +40,9 @@ export class GM_Classic{
         this.worldGrid.step(this.inputHandler);
         this.worldGrid.render(this.context);
         if (!this.worldGrid.snake.alive){
+            alert("Vous avez perdu!")
             clearInterval(this.clockID);
+            this.backToMenu()
         }
     }
 
@@ -56,6 +53,12 @@ export class GM_Classic{
         if (this.canvas){
             this.game.root.removeChild(this.canvas);
         }
+    }
+
+    backToMenu(){
+        this.unload();
+        this.game.gamemode = new GM_Menu(this.game);
+        this.game.gamemode.load();
     }
 
 }

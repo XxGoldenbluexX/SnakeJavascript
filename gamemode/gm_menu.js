@@ -13,7 +13,6 @@ export class GM_Menu{
         this.nameNode = document.createElement("input");
         this.nameNode.type = "text";
         this.nameNode.value = "default";
-        console.log(this.nameNode);
         //map name label
         this.labelNode = document.createElement("label");
         this.labelNode.innerText = "Nom de la carte: ";

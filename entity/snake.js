@@ -6,6 +6,7 @@ export class Snake{
         this.dir = [0,0];
         this.alive = true;
         this.stepSize = 1;
+        this.statusEffects = [];
     }
 
     onSnakeInteract(grid,snake){
@@ -13,6 +14,7 @@ export class Snake{
     }
 
     step(grid,inputh){
+        this.stepStatusEffects();
         let xspd = 0;
         let yspd = 0;
         xspd = inputh.getDirectionalX();
@@ -38,5 +40,19 @@ export class Snake{
         for (let c of this.cases){
             context.fillRect(c[0]*grid.caseWidth,c[1]*grid.caseHeight,grid.caseWidth,grid.caseHeight);
         }
+    }
+
+    stepStatusEffects(){
+        for (let e of this.statusEffects){
+            e.time--;
+            if (e.time<=0){
+                e.remove(this);
+            }
+        }
+        this.statusEffects = this.statusEffects.filter(function(e){return e.time>0});
+    }
+    addStatusEffect(eff){
+        this.statusEffects.push(eff);//amélioration possible, le systeme actuel aura des problèmes si les effets données ne sont pas accumulable.
+        eff.apply(this)
     }
 }
