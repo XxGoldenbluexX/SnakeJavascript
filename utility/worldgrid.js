@@ -59,6 +59,10 @@ export class WorldGrid{
         return true;
     }
 
+    placeInsideBounds(place){
+        return (place[0]<this.worldWidth && place[0]>=0 && place[1]<this.worldHeight && place[1]>=0)
+    }
+
     getEntitiesAt(place){
         let list = []
         for (let e of this.entities){

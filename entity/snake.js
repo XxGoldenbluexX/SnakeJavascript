@@ -25,7 +25,7 @@ export class Snake{
         for (let e of grid.getEntitiesAt(yspd)){
             e.onSnakeInteract(grid,this)
         }
-        this.alive = this.alive && (yspd[0]<grid.worldWidth && yspd[0]>=0 && yspd[1]<grid.worldHeight && yspd[1]>=0)
+        this.alive = this.alive && grid.placeInsideBounds(yspd);
         this.cases.push(yspd);
         while (this.cases.length>this.size){
             this.cases.shift();

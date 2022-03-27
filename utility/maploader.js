@@ -27,9 +27,10 @@ export class MapLoader{
                 wall.cases.push(w);
                 worldGrid.entities.push(wall);
             }
-            callback();
+            callback(true);
         }else{
-            console.log("Unable to fetch the map file: "+fileName);
+            console.log("Unable to fetch the map file: "+mapName);
+            callback(false);
         }
     }
 

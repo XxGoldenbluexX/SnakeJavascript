@@ -2,6 +2,7 @@ import { FoodGrowth } from "../entity/food.js";
 import { InputHandler } from "../utility/inputhandler.js";
 import { MapLoader } from "../utility/maploader.js";
 import { WorldGrid } from "../utility/worldgrid.js";
+import { GM_Menu } from "./gm_menu.js";
 
 export class GM_Classic{
 
@@ -18,7 +19,14 @@ export class GM_Classic{
         mapLoader.load(this.game.selectedMap,this.worldGrid,this.onMapLoaded.bind(this))
     }
 
-    onMapLoaded(){
+    onMapLoaded(loaded){
+        if (!loaded){
+            alert("La carte n'a pas pu charger")
+            this.unload();
+            this.game.gamemode = new GM_Menu(this.game);
+            this.game.gamemode.load();
+            return;
+        }
         this.canvas = document.createElement("canvas");
         this.canvas.width = this.worldGrid.viewWidth;
         this.canvas.height = this.worldGrid.viewHeight;
@@ -45,7 +53,9 @@ export class GM_Classic{
      * Methode détruisant le mode de jeu.
      */
     unload(){
-        this.game.root.removeChild(this.canvas);
+        if (this.canvas){
+            this.game.root.removeChild(this.canvas);
+        }
     }
 
 }
