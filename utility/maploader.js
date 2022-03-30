@@ -38,7 +38,12 @@ export class MapLoader{
                     let food = new FoodStepSize();
                     food.cases.push(f);
                     worldGrid.entities.push(food);
-                }
+                }/*
+                for (let f of map.foodFat){
+                    let food = new MegaFruit();
+                    food.cases.push(f);
+                    worldGrid.entities.push(food);
+                }*/
                 callback(true);
             }catch(err){
                 console.log("Unable to load the map file (file syntax invalid?): "+mapName);
