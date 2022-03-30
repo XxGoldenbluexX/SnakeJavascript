@@ -11,6 +11,7 @@ export class WorldGrid{
         this.viewHeight = 0;
         this.stepDelay = 0;
         this.snake=null;
+        this.toRemove = []
     }
 
     renderGrid(context){
@@ -27,6 +28,10 @@ export class WorldGrid{
         for (let e of this.entities){
             e.step(this,inputHandler);
         }
+        this.entities = this.entities.filter(function(item){
+            return !this.toRemove.includes(item);
+        }.bind(this));
+        this.toRemove = []
     }
 
     render(context){

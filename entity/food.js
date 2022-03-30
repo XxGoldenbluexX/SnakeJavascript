@@ -56,7 +56,7 @@ export class MegaFruit{
 
     onSnakeInteract(grid,snake){
         snake.size += 3;
-        this.cases = [];
+        grid.toRemove.push(this);
     }
 
     step(grid,inputh){

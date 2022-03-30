@@ -39,7 +39,7 @@ export class MapLoader{
                     food.cases.push(f);
                     worldGrid.entities.push(food);
                 }
-                for (let f of map.foodFat){
+                for (let f of map.megaFruit){
                     let food = new MegaFruit();
                     food.cases.push(f);
                     worldGrid.entities.push(food);
