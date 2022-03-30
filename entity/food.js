@@ -1,4 +1,5 @@
 import { DoubleSpeedEffect } from "../statuseffect.js";
+import {HSLToRGB} from "../utility/utility.js"
 
 export class FoodGrowth{
 
@@ -52,6 +53,7 @@ export class MegaFruit{
 
     constructor(){
         this.cases = []
+        this.hue = 0;
     }
 
     onSnakeInteract(grid,snake){
@@ -60,12 +62,12 @@ export class MegaFruit{
     }
 
     step(grid,inputh){
-
+        this.hue+=10;
+        while (this.hue>360) this.hue -= 360
     }
 
     render(grid,context){
-        context.fillStyle = "#800";
-        context.strokeStyle = "#f00";
+        context.fillStyle = "hsl("+this.hue+",100%,50%)";
         let c = this.cases[0];
         context.fillRect(c[0]*grid.caseWidth,c[1]*grid.caseHeight,grid.caseWidth,grid.caseHeight);
     }
