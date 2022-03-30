@@ -47,3 +47,27 @@ export class FoodStepSize{
     }
 
 }
+
+export class MegaFruit{
+
+    constructor(){
+        this.cases = []
+    }
+
+    onSnakeInteract(grid,snake){
+        snake.size += 3;
+        this.cases = [];
+    }
+
+    step(grid,inputh){
+
+    }
+
+    render(grid,context){
+        context.fillStyle = "#800";
+        context.strokeStyle = "#f00";
+        let c = this.cases[0];
+        context.fillRect(c[0]*grid.caseWidth,c[1]*grid.caseHeight,grid.caseWidth,grid.caseHeight);
+    }
+
+}
