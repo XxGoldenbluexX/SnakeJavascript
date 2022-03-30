@@ -30,6 +30,7 @@ export class GM_Classic{
         this.canvas.height = this.worldGrid.viewHeight;
         this.context = this.canvas.getContext("2d",{alpha:false});
         if (this.context==null) return;
+        this.context.font = "30px Arial";
         this.game.root.appendChild(this.canvas);
         this.inputHandler = new InputHandler();
         this.clockID = setInterval(this.gameLoop.bind(this),this.worldGrid.stepDelay)
@@ -39,6 +40,8 @@ export class GM_Classic{
         this.context.clearRect(0,0,this.worldGrid.viewWidth,this.worldGrid.viewHeight);
         this.worldGrid.step(this.inputHandler);
         this.worldGrid.render(this.context);
+        this.context.fillStyle = "#ff0"
+        this.context.fillText("Score:"+this.worldGrid.snake.size,0,this.worldGrid.viewHeight);
         if (!this.worldGrid.snake.alive){
             alert("Vous avez perdu!")
             clearInterval(this.clockID);
